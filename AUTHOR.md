@@ -1,8 +1,8 @@
 # Author Information
-<p><string>Name:</strong> Zijinhui Zhuang</p>
-<p><string>Major:</strong> Computer Science</p>
-<p><string>Career interest:</strong> Full-Stack Developer</p>
-<p><string>Hobbies:</strong></p>
+<p><strong>Name:</strong> Zijinhui Zhuang</p>
+<p><strong>Major:</strong> Computer Science</p>
+<p><strong>Career interest:</strong> Full-Stack Developer</p>
+<p><strong>Hobbies:</strong></p>
        <ul>
          <li>Listen to music</li>
          <li>LEGO Lover</li>
