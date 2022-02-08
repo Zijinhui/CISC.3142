@@ -1,4 +1,4 @@
-"# Author Information" 
+# Author Information
 Name: Zijinhui Zhuang
 Major: Computer Science
 Career interest: Full-Stack Developer
