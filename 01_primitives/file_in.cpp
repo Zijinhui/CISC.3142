@@ -154,25 +154,27 @@ int main() {
   vector<int>::iterator y;
   y = unique(uniqueYear.begin(), uniqueYear.end());
   uniqueYear.resize(distance(uniqueYear.begin(), y));
-  vector<int>list;
+  string list;
   for (int j = 0; j < uniqueYear.size(); j++) {
     count = 0;
-    list = {};
+    list = "";
     for (int i = 1; i < vYear.size(); i++) {
       if (vYear[i] == uniqueYear[j]) {
-        count++;
-        list.push_back(vSKU[i]);
+        count++; 
+        list += " " + to_string(vSKU[i]) + ",";             
       }
     }
-    outFile << uniqueYear[j] << " (" << count << "): " <<" ";
-    for (int k = 0; k < list.size(); k++) {    
-      if (k != list.size()-1) {
-         outFile << list[k] << ", " << " ";
-      }else {
-         outFile << list[k] << " ";
-      }
-    }
-    outFile << endl;
+
+    
+    cout << uniqueYear[j] << " (" << count << "):" << list.substr(0, list.size()-1) << endl;
+    // for (int k = 0; k < list.size(); k++) {    
+    //   if (k != list.size()-1) {
+    //      outFile << list[k] << ", " << " ";
+    //   }else {
+    //      outFile << list[k] << " ";
+    //   }
+    // }
+    // outFile << endl;
   }
 
   outFile.close();
