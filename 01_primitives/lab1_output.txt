@@ -8,3 +8,6 @@ The average price of Category B : 1
 
 The average price of Category C : 1
 
+2000 (2): 111, 211
+2010 (2): 112, 212
+2020 (5): 113, 213, 321, 322, 323
