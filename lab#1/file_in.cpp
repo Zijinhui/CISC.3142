@@ -17,6 +17,7 @@ All programs must be able to compile in C++98 standard (the default version on L
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <stdio.h>
 
 using namespace std; 
 
@@ -70,14 +71,16 @@ int main() {
     in_stream.close(); //closing the file cout << "Number of entries: " << i-1 << endl;
 
    } else {
-    cout << "Unable to open file"; 
+    printf("Unable to open file"); 
    }
  
   //output values 
-  cout << "SKU" << "\t" << "Brand" << "\t"<< "CATEGORY" << "\t" << "Year" << "\t" << "PRICE" << endl; 
+  //cout << "SKU" << "\t" << "Brand" << "\t"<< "CATEGORY" << "\t" << "Year" << "\t" << "PRICE" << endl;
+  printf("SKU\tBrand\tCATEGORY\tYear\tPRICE\n");
 
   for (int j = 1; j < vSKU.size(); j++) {
-    cout << vSKU[j] << "\t" << vBrand[j] << "\t\t\t" << vCategory[j] << "\t\t" << vYear[j] << "\t" << vPrice[j]  << endl;
+    //cout << vSKU[j] << "\t" << vBrand[j] << "\t\t\t" << vCategory[j] << "\t\t" << vYear[j] << "\t" << vPrice[j]  << endl;
+    printf("%d\t%s\t\t\t%s\t\t%d\t%g\n", vSKU[j],vBrand[j].c_str(),vCategory[j].c_str(),vYear[j],vPrice[j]);
   }
 
   ofstream outFile;
