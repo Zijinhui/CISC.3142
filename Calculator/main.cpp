@@ -11,28 +11,41 @@ struct Calculator {
         add = '+',
         minus = '-',
         multiply = '*',
-        divide = '/'
+        divide = '/',
+        exponent = '^'
     };
 
     double compute(double num1, double num2, char op) {
         double result = 0.0;
         
         switch(op) {
+            
             case Calculator::add:
                 result = num1 + num2;
                 break;
+            
             case Calculator::minus:
                 result = num1 - num2;
                 break;
+            
             case Calculator::multiply:
                 result = num1 * num2;
                 break;
+            
             case Calculator::divide:
                 result = num1 / num2;
+                break;
+            
+            case Calculator::exponent:      
+                result = 1.0;
+                while (num2 != 0) {
+                    result *= num1; // num1 is base
+                    --num2; //num2 is exponent
+                }
+                break; 
         }
         return result;
-    }
-    
+    }  
 };
 
 
