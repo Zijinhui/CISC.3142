@@ -14,25 +14,21 @@ struct Calculator {
         divide = '/'
     };
 
-    double compute(string num1, string num2, char op) {
-        //struct Calculator cal;
+    double compute(double num1, double num2, char op) {
         double result = 0.0;
-        cout << "Compute: "<< num1 << num2 << endl;
-        double a = std::stod(num1);
-        double b = std::stod(num2);
         
         switch(op) {
             case Calculator::add:
-                result = a + b;
+                result = num1 + num2;
                 break;
             case Calculator::minus:
-                result = a - b;
+                result = num1 - num2;
                 break;
             case Calculator::multiply:
-                result = a * b;
+                result = num1 * num2;
                 break;
             case Calculator::divide:
-                result = a / b;
+                result = num1 / num2;
         }
         return result;
     }
@@ -55,7 +51,7 @@ int main() {
     getline(cin, infixExpression);
     cout << infixExpression << endl;
     //printf("\n%s",infixExpression);
-    
+
     //convert infix to postfix
    postfixExpression = convert(infixExpression);
     cout << postfixExpression << endl;
@@ -165,38 +161,32 @@ string convert(string infix) {
 
 double evaluatePostfix(string postfix) {
     stack<double> result;
-    //double value;
     struct Calculator cal;
+    double digit = 0.0;
 
-    cout << "evaluatePostfix TEST" << endl;
     for(int i = 0; i < postfix.length(); i++) {
-        string num22;
-        string num11;
-       
-        cout << postfix[i] << endl;
         char currentChar = postfix[i];
 
         if (currentChar == ' ') {
             continue;
+
         }else if (isOperand(currentChar)) {
-            result.push(currentChar);
+            int n = currentChar-48; // convert char to int
+            digit = digit * 10 + (double)n; //initial digit = 0.0
+            
+            if (postfix[i+1] == ' ') {
+                result.push(digit);
+                digit = 0.0; //reset total
+            }
+
         } else if (isOperator(currentChar)) {
-            char num2 = result.top();
-            
+            double num2 = result.top();           
             result.pop(); // pop num2
-            char num1 = result.top();
-            
+            double num1 = result.top();         
             result.pop(); // pop num1
 
-            string num22(1, num2);
-            string num11(1, num1);
-            // num22+=num2;
-            // num11+=num1;
-
-            double value = cal.compute(num11, num22, currentChar);
-            cout << "Value: "<< value << endl;
-            result.push(value); // push the value
-            
+            double value = cal.compute(num1, num2, currentChar);
+            result.push(value); // push the value       
         }
     }
     return result.top();
