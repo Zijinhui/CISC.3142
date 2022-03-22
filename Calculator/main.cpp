@@ -1,8 +1,8 @@
 #include <iostream>
-#include<bits/stdc++.h>
 #include <string>
 #include <stdio.h>
 #include <stack>
+#include <math.h>
 
 using namespace std;
 
@@ -37,11 +37,7 @@ struct Calculator {
                 break;
             
             case Calculator::exponent:      
-                result = 1.0;
-                while (num2 != 0) {
-                    result *= num1; // num1 is base
-                    --num2; //num2 is exponent
-                }
+                result = pow(num1, num2);
                 break; 
         }
         return result;
@@ -58,39 +54,26 @@ double evaluatePostfix(string);
 int main() {
     string infixExpression, postfixExpression;
     double ans;
-    cout << "Please enter the expression: ";
-    
-    //use getline() to get entire expression
-    getline(cin, infixExpression);
-    cout << infixExpression << endl;
-    //printf("\n%s",infixExpression);
+    char retry;
 
-    //convert infix to postfix
-   postfixExpression = convert(infixExpression);
-    cout << postfixExpression << endl;
+    do {     
+        cout << "Please enter the expression: ";
     
-    //Compute postfix
-    ans = evaluatePostfix(postfixExpression);
-    cout << "Final total: " << ans;
+        //use getline() to get entire expression
+        getline(cin, infixExpression);
 
-    // struct Calculator cal;
-    // char sign = Calculator :: add;
-    // double a = cal.compute("3","4",sign);
-    // printf("Test: %.2f", a);
-    // a = cal.compute("4", "5",Calculator :: multiply);
-    // printf("Test: %.2f", a);
-    //printf("Test: %.2f", b);
-   
+        //convert infix to postfix
+        postfixExpression = convert(infixExpression);
+    
+        //Compute postfix
+        ans = evaluatePostfix(postfixExpression);
+        cout << "Result: " << ans << endl;
+        cout << "Stay for a new calculation? y for yes && n for no" << endl;
+        cin >> retry;
+    }while(retry == 'y');
    
    return 0;
 }
-
-// struct Calculator cal;
-// char sign = Calculator :: add;
-// double a = cal.compute("3","4",sign);
-// printf("Test: %.2f", a);
-// return 0;
-
 
 bool isOperand(char c) {
     if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
@@ -105,7 +88,7 @@ bool isOperator(char c) {
     return false;
 }
 
-//Function to return precedence of operators
+// function to return precedence of operators
 int prec(char c) {
     if(c == '^')
         return 3;
