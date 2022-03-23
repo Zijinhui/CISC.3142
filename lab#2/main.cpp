@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stack>
 #include <math.h>
+#include <fstream>
 
 using namespace std;
 
@@ -54,21 +55,26 @@ double evaluatePostfix(string);
 int main() {
     string infixExpression, postfixExpression;
     double ans;
-     
-    string testcase [] = {"(1+1)(1+1)", "2(1+1)", "(1+1)2-1*2", "1+1*2", "(22+2*1)-16/2+2", "2^3", "1+4^(1/2)", "1-16/4+2"};
 
-    for (int i = 0; i<sizeof(testcase)/sizeof(testcase[0]) ; i++){
-        infixExpression =testcase[i];
-        cout << "Expression: " << infixExpression << "  ";
+    ifstream in_stream;
+    //opening the file.
+    in_stream.open("testCases.txt"); 
 
-        //Convert infix to postfix
-        //The advantage of the postfix: allow to agnore parentheses when calculating
-        postfixExpression = convert(infixExpression);
+    if(!in_stream.fail()) {
+        while (getline(in_stream, infixExpression)) {
+            cout << "Expression: " << infixExpression << "  ";
+
+            //Convert infix to postfix
+            //The advantage of the postfix: allow to agnore parentheses when calculating
+            postfixExpression = convert(infixExpression);
         
-        //Compute the postfix
-        ans = evaluatePostfix(postfixExpression);
-        cout << "=> Result: " << ans << endl <<endl;
-    }
+            //Compute the postfix
+            ans = evaluatePostfix(postfixExpression);
+            cout << "=> Result: " << ans << endl <<endl;
+        }
+    } 
+
+    in_stream.close();
         
    return 0;
 } // main-----------------------------------------------------------------------------------------
