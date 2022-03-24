@@ -62,7 +62,8 @@ int main() {
 
     if(!in_stream.fail()) {
         while (getline(in_stream, infixExpression)) {
-            cout << "Expression: " << infixExpression << "  ";
+            //cout << "Expression: " << infixExpression << "  ";
+            cout << "Expression: "<< infixExpression << endl;
 
             //Convert infix to postfix
             //The advantage of the postfix: allow to agnore parentheses when calculating
