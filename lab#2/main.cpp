@@ -7,6 +7,10 @@
 
 using namespace std;
 
+// The basic algorithom of this calcultor program is to:
+//   1) convert the input expression(infix expression) to postfix expression
+//   2) evaluate the post expression 
+
 struct Calculator {
     enum operators {
         add = '+',
@@ -61,8 +65,8 @@ int main() {
     in_stream.open("testCases.txt"); 
 
     if(!in_stream.fail()) {
+
         while (getline(in_stream, infixExpression)) {
-            //cout << "Expression: " << infixExpression << "  ";
             cout << "Expression: "<< infixExpression << endl;
 
             //Convert infix to postfix
@@ -113,7 +117,7 @@ int prec(char c) {
 string convert(string infix) {
     stack<char> s;
     string postfix = "";
-    int digitCount = 0;
+    //int digitCount = 0;
 
     for (int i = 0; i < infix.length(); i++) {
         char currentChar = infix[i];
@@ -131,16 +135,16 @@ string convert(string infix) {
             s.push(currentChar);
 
         } else if (isOperand(currentChar)) {
-            
+            // If points to a operand and if the previous character is ')', autofill a '*' into postfix at first.
+            // Otherwise, treat it as a digit.
             if (infix[i-1] == ')') {
                 s.push('*');
             }
 
-            digitCount++;
+            //In order to track multiple digits numbers, add an empty space if the next char is not a num
             postfix += currentChar;
             if (i != infix.length()-1 && !isOperand(infix[i+1])) {
                 postfix += " ";
-                digitCount = 0;
             } 
         
         } else if (isOperator(currentChar)) {
@@ -149,7 +153,7 @@ string convert(string infix) {
             // Otherwise, push it directly.
             while (!s.empty() && prec(currentChar) <= prec(s.top())) {
                 postfix += s.top(); // peek the top index
-                postfix += " ";
+                postfix += " "; 
                 s.pop(); // pop out
             }
             s.push(currentChar);
@@ -177,6 +181,7 @@ double evaluatePostfix(string postfix) {
     struct Calculator cal;
     double digit = 0.0;
 
+    // Iterate the postfix expression
     for(int i = 0; i < postfix.length(); i++) {
         char currentChar = postfix[i];
 
@@ -187,6 +192,8 @@ double evaluatePostfix(string postfix) {
             int n = currentChar-48; // convert char to int
             digit = digit * 10 + (double)n; //initial digit = 0.0
             
+            // When next char is ' ', it means the current digit is the last digit of this num.
+            // Then, push the num to the stack and reset digits counter. 
             if (postfix[i+1] == ' ') {
                 result.push(digit);
                 digit = 0.0; //reset total
