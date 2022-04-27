@@ -2,9 +2,10 @@
 #include "user.h"
 #include "readerAndWriter.h"
 #include "aggregation.h"
-#include <algorithm>
 #include <vector>
-using namespace std; 
+#include <algorithm>
+
+using namespace std;
 
 int main() {
     Reader obj;
@@ -20,7 +21,16 @@ int main() {
     instructor.resize(std::distance(instructor.begin(), i));
 
     //rate(instructor,obj.studentStru);
-    wRate(instructor,obj.studentStru);
+    //wRate(instructor,obj.studentStru);
 
+    // get unique courNum
+    vector<string>courseNum = obj.vCourseNum;
+    vector<string>::iterator c;
+    std::sort(courseNum.begin(), courseNum.end());
+    c = std::unique(courseNum.begin(),courseNum.begin() + courseNum.size());
+    courseNum.resize(std::distance(courseNum.begin(), c));    
+
+
+    courseRate(courseNum,obj.studentStru);
     return 0;
 }

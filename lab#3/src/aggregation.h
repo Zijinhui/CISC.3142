@@ -1,10 +1,6 @@
 
 #include <vector>
-#include <stdio.h>
 #include <string>
-//#include "readerAndWriter.h"
-//#include "user.h"
-
 using namespace std;
 
 int passNum=0;
@@ -45,3 +41,30 @@ void wRate(vector<string>& uniqueInstructor, vector<Student>& student) {
         printf("%s %.2f\n",uniqueInstructor[i].c_str(), (float)passNum/totalStu);
     }  
 }
+
+
+void courseRate(vector<string>&courseNum,vector<Student>& student) {
+    int totalCourse=0;
+    int fallNum=0;
+    int springNum=0;
+    for(int i=0; i<courseNum.size(); i++) {
+        for(int j=0; j<student.size();j++) {
+            
+            //same course number 
+            if(courseNum[i]==student[j].stu_course.courseNumber) {
+                totalCourse++;
+                //Fall term
+                if(student[j].stu_term.displayName=="Fall"){
+                    fallNum++;          
+                }
+                //Spring term
+                if(student[j].stu_term.displayName=="Spring"){
+                    springNum++;
+                }
+            }
+        }
+        printf("%d %d  %d\n",fallNum, springNum, totalCourse);
+        printf("%s Fall: %f  Spring: %f \n",courseNum[i].c_str(), (float)fallNum/totalCourse,(float)springNum/totalCourse);
+    }
+}
+    

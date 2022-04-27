@@ -3,8 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
-// #include "user.h"
-// #include "aggregation.h"
+
 using namespace std;
 
 class Reader {
@@ -41,7 +40,6 @@ void Reader::input() {
         struct Instructor ins;
         struct Term term;
 
-        //printf("%s",files[j].c_str());
         ifstream file;
         file.open(files[j].c_str());
 
@@ -54,7 +52,7 @@ void Reader::input() {
             //while the end of file is NOT reached
             while(getline(file, line)) {
                 stringstream eachLine(line);
-                //printf("%s\t",line);
+               
                 // Fields: studentId, courseNum, instructorId, termId, sectionId, grade
 
                 getline(eachLine, studentId, ',');
@@ -68,16 +66,15 @@ void Reader::input() {
 
                 getline(eachLine, termId, ',');
                 vTermId.push_back(termId);
-
-                getline(eachLine, sectionId, ',');
-                vSectionId.push_back(sectionId);
-                
-                // Check the section term base on the given code list
-                 if (sectionId=="T04"||sectionId=="T08"||sectionId=="T12"||sectionId=="T16"||sectionId=="T20"||sectionId=="T23"){
+                 // Check the section term base on the given code list
+                 if (termId=="T04"||termId=="T08"||termId=="T12"||termId=="T16"||termId=="T20"||termId=="T23"){
                             term.displayName = "Fall";
                         } else {
                             term.displayName = "Spring";
                         }
+
+                getline(eachLine, sectionId, ',');
+                vSectionId.push_back(sectionId);
 
                 getline(eachLine, grade, '\n');
                 vGrade.push_back(grade);
