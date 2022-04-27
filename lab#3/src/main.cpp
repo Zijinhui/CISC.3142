@@ -1,8 +1,4 @@
-#include <iostream>
 #include "readerAndWriter.h"
-#include <vector>
-#include <algorithm>
-
 using namespace std; 
 
 //extern vector<string> vStudentId; 
@@ -10,8 +6,8 @@ using namespace std;
 int main() {
     Reader obj;
     obj.input();
-    printf("%d\n",obj.vStudentId.size());
-    printf("%d\n", obj.studentStru.size());
+    printf("%lu\n",obj.vStudentId.size());
+    printf("%lu\n", obj.studentStru.size());
     //get unique students
     // vector<string>student = obj.vStudentId;
     // vector<string>::iterator s;
@@ -46,9 +42,20 @@ int main() {
 
     //std::sort(student.begin(), student.end());
 
-    for(int i=0; i<obj.studentStru.size(); i++) {
-        
+    //get unique students
+    vector<string>instructor = obj.vInstructorId;
+    vector<string>::iterator i;
+    std::sort(instructor.begin(), instructor.end());
+    i = std::unique(instructor.begin(),instructor.begin() + instructor.size());
+    instructor.resize(std::distance(instructor.begin(), i));
+
+    for(int i=0; i<instructor.size();i++) {
+        printf("%s\n", instructor[i].c_str());
     }
+
+    // for(int i=0; i<obj.studentStru.size(); i++) {
+        
+    // }
 
     return 0;
 }

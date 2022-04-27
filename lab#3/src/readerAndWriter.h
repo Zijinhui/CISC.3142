@@ -22,13 +22,13 @@ public:
 
 
     // Function declaration of input() to input info
-    int input();
+    void input();
 
     // Function declaration of output()
     int output();
 };
 
-int Reader::input() {
+void Reader::input() {
     files.push_back("../data/1115.csv");
     files.push_back("../data/3115.csv");
     files.push_back("../data/3130.csv");
@@ -40,8 +40,9 @@ int Reader::input() {
         struct Instructor ins;
         struct Term term;
 
+        printf("%s",files[j].c_str());
         ifstream file;
-        file.open(files[j].c_str());
+        file.open(files[j]);
 
         if (!file.fail()) {
         
