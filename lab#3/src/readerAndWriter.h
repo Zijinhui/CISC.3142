@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "user.h"
+#include "aggregation.h"
 using namespace std;
 
 class Reader {
@@ -42,7 +43,7 @@ void Reader::input() {
 
         printf("%s",files[j].c_str());
         ifstream file;
-        file.open(files[j]);
+        //file.open(files[j].c_str());
 
         if (!file.fail()) {
         
