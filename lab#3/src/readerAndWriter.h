@@ -3,8 +3,8 @@
 #include <sstream>
 #include <vector>
 #include <string>
-#include "user.h"
-#include "aggregation.h"
+// #include "user.h"
+// #include "aggregation.h"
 using namespace std;
 
 class Reader {
@@ -41,12 +41,11 @@ void Reader::input() {
         struct Instructor ins;
         struct Term term;
 
-        printf("%s",files[j].c_str());
+        //printf("%s",files[j].c_str());
         ifstream file;
-        //file.open(files[j].c_str());
+        file.open(files[j].c_str());
 
         if (!file.fail()) {
-        
             string line;
         
             // skip the first line
@@ -106,11 +105,5 @@ void Reader::input() {
             printf("Unable to open file\n");
         }
     }
-    
-    
-
-    // for (int i=0; i<vStudentId.size(); i++) {
-    //     printf("%s\t%s\t%s\t%s\t%s\t%s\n", vStudentId[i].c_str(),vCourseNum[i].c_str(),vInstructorId[i].c_str(),vTermId[i].c_str(),vSectionId[i].c_str(),vGrade[i].c_str());
-    // }
 }
 

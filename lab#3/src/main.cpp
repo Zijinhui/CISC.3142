@@ -1,7 +1,7 @@
 
-//#include "user.h"
+#include "user.h"
 #include "readerAndWriter.h"
-//#include "aggregation.h"
+#include "aggregation.h"
 #include <algorithm>
 #include <vector>
 using namespace std; 
@@ -11,7 +11,6 @@ int main() {
     obj.input();
     printf("%d\n",obj.vStudentId.size());
     printf("%d\n", obj.studentStru.size());
-    
 
     // get unique instructors
     vector<string>instructor = obj.vInstructorId;
@@ -20,7 +19,8 @@ int main() {
     i = std::unique(instructor.begin(),instructor.begin() + instructor.size());
     instructor.resize(std::distance(instructor.begin(), i));
 
-    //rate(instructor,stu);
+    //rate(instructor,obj.studentStru);
+    wRate(instructor,obj.studentStru);
 
     return 0;
 }
