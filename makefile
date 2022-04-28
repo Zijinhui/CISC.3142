@@ -3,3 +3,6 @@ lab1:
 
 lab2:
 	cd lab#2 && g++ main.cpp -o main && ./main
+
+lab3:
+	cd lab#3/src && g++ main.cpp -o main && ./main
