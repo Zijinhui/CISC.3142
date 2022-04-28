@@ -28,9 +28,9 @@ public:
 };
 
 void Reader::input() {
-    files.push_back("../data/1115.csv");
-    files.push_back("../data/3115.csv");
-    files.push_back("../data/3130.csv");
+    files.push_back("..\data\1115.csv");
+    files.push_back("..\data\3115.csv");
+    files.push_back("..\data\3130.csv");
     
     for(int j=0; j<files.size();j++) {
         
