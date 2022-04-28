@@ -2,6 +2,7 @@
 #include "user.h"
 #include "readerAndWriter.h"
 #include "aggregation.h"
+#include "enroll.h"
 #include <vector>
 #include <algorithm>
 
@@ -10,8 +11,6 @@ using namespace std;
 int main() {
     Reader obj;
     obj.input();
-    printf("%d\n",obj.vStudentId.size());
-    printf("%d\n", obj.studentStru.size());
 
     // get unique instructors
     vector<string>instructor = obj.vInstructorId;
@@ -20,8 +19,10 @@ int main() {
     i = std::unique(instructor.begin(),instructor.begin() + instructor.size());
     instructor.resize(std::distance(instructor.begin(), i));
 
-    //rate(instructor,obj.studentStru);
-    //wRate(instructor,obj.studentStru);
+    //pass the list of unique instructors and studentStru into rate()
+    rate(instructor,obj.studentStru);
+    //pass the list of unique instructors and studentStru into wRate()
+    wRate(instructor,obj.studentStru);
 
     // get unique courNum
     vector<string>courseNum = obj.vCourseNum;
@@ -30,7 +31,7 @@ int main() {
     c = std::unique(courseNum.begin(),courseNum.begin() + courseNum.size());
     courseNum.resize(std::distance(courseNum.begin(), c));    
 
-
+    //pass the list of unique courseNum and studentStru into courseRate()
     courseRate(courseNum,obj.studentStru);
     return 0;
 }

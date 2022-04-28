@@ -1,12 +1,17 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
+#include <cmath>
 using namespace std;
 
 int passNum=0;
 int totalStu=0;
 
 void rate(vector<string>& uniqueInstructor, vector<Student>& student) {
+    ofstream passRateFile;
+    passRateFile.open("../output/passRate.txt");
+    passRateFile << "Instructor\t" << " Rate\n";
     for(int i=0; i<uniqueInstructor.size();i++) {
         for(int j=0; j<student.size();j++) {
 
@@ -20,11 +25,17 @@ void rate(vector<string>& uniqueInstructor, vector<Student>& student) {
                 }
             }
         }
-        printf("%s %.2f\n",uniqueInstructor[i].c_str(), (float)passNum/totalStu);
-    }  
+        passRateFile << "\t" <<uniqueInstructor[i].c_str() << "\t\t " <<ceil((float)passNum/totalStu*10000)/100 << "%" << endl;
+    }   
+    passRateFile.close();  
 }
 
 void wRate(vector<string>& uniqueInstructor, vector<Student>& student) {
+
+    ofstream wRateFile;
+    wRateFile.open("../output/wRate.txt");
+
+    wRateFile << "Instructor\t" << "WRate\n";
     for(int i=0; i<uniqueInstructor.size();i++) {
         for(int j=0; j<student.size();j++) {
 
@@ -38,12 +49,17 @@ void wRate(vector<string>& uniqueInstructor, vector<Student>& student) {
                 }
             }
         }
-        printf("%s %.2f\n",uniqueInstructor[i].c_str(), (float)passNum/totalStu);
-    }  
+        wRateFile << " " << uniqueInstructor[i].c_str() << "\t\t" << ceil((float)passNum/totalStu*10000)/100<< "%" << endl;
+    }
+    wRateFile.close();  
 }
 
 
 void courseRate(vector<string>&courseNum,vector<Student>& student) {
+    ofstream courseRateFile;
+    courseRateFile.open("../output/courseRate.txt");
+
+    courseRateFile << "Course Number\t" << "Fall Rate\t" << "Spring Rate\n";
     int totalCourse=0;
     int fallNum=0;
     int springNum=0;
@@ -63,8 +79,8 @@ void courseRate(vector<string>&courseNum,vector<Student>& student) {
                 }
             }
         }
-        printf("%d %d  %d\n",fallNum, springNum, totalCourse);
-        printf("%s Fall: %f  Spring: %f \n",courseNum[i].c_str(), (float)fallNum/totalCourse,(float)springNum/totalCourse);
+        courseRateFile << "\t" << courseNum[i].c_str() << "\t\t" << ceil((float)fallNum/totalCourse*10000)/100 << "%\t\t  " <<ceil((float)springNum/totalCourse*10000)/100 << "%" <<endl;
     }
+    courseRateFile.close();
 }
     

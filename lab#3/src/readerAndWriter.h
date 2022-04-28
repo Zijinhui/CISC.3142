@@ -20,7 +20,6 @@ public:
 
     vector<Student>studentStru;
 
-
     // Function declaration of input() to input info
     void input();
 
@@ -54,7 +53,6 @@ void Reader::input() {
                 stringstream eachLine(line);
                
                 // Fields: studentId, courseNum, instructorId, termId, sectionId, grade
-
                 getline(eachLine, studentId, ',');
                 vStudentId.push_back(studentId);
             
@@ -66,6 +64,7 @@ void Reader::input() {
 
                 getline(eachLine, termId, ',');
                 vTermId.push_back(termId);
+                 
                  // Check the section term base on the given code list
                  if (termId=="T04"||termId=="T08"||termId=="T12"||termId=="T16"||termId=="T20"||termId=="T23"){
                             term.displayName = "Fall";
