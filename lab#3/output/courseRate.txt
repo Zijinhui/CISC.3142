@@ -1,4 +1,2 @@
 Course Number	Fall Rate	Spring Rate
 	1115		44.83%		  55.18%
-	3115		43.38%		  56.63%
-	3130		43.31%		  56.7%
