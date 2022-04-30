@@ -33,5 +33,12 @@ int main() {
 
     //pass the list of unique courseNum and studentStru into courseRate()
     courseRate(courseNum,obj.studentStru);
+
+    // test for enrolling feature
+    Enroll new_enroll("111","T16");
+    new_enroll.setGrade("A");
+
+    printf("Grade for student %s is %s\n", new_enroll.getId().c_str(), new_enroll.getGrade().c_str());
+
     return 0;
 }

@@ -40,7 +40,7 @@ void Reader::input() {
         struct Term term;
 
         ifstream file;
-        file.open("../data/1115.csv");
+        file.open(files[j].c_str());
 
         if (!file.fail()) {
             string line;
